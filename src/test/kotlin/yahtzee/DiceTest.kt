@@ -1,3 +1,5 @@
+package yahtzee
+
 import kotlin.test.Test
 
 class DiceTest {
