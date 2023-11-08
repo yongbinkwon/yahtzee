@@ -9,10 +9,9 @@ class Score(
 
     fun result() = groupDice()
 
-    private fun groupDice() =
-        diceValues.fold(mutableMapOf<Int, Int>()) { acc, value ->
+    private fun groupDice(): Map<Int, Int> =
+        diceValues.fold(mutableMapOf()) { acc, value ->
             acc[value] = (acc[value] ?: 0) + 1
             acc
         }
-
 }

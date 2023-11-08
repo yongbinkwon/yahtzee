@@ -5,4 +5,4 @@ class Triple(
 ): Combination(diceValue, 3*diceValue) {
     override fun subset() = listOf(Single(diceValue, 3))
     override fun toString() = "Three of a kind"
-}g
+}
