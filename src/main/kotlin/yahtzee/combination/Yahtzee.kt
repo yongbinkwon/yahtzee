@@ -5,6 +5,6 @@ class Yahtzee(
 ): Combination() {
     override val score = 36
     override fun subset() = listOf(Single(diceValue,4), triple())
-    private fun triple() = Triple(diceValue, List(4) { diceValue })
+    private fun triple() = Triple(diceValue, diceValue*4)
     override fun result() = "Yahtzee!! That's $score points :O"
 }
