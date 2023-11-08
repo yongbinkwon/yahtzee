@@ -6,21 +6,12 @@ class BoardTest {
 
     @Test
     fun singles() {
-    }
-
-    @Test
-    fun `single pair`() {
-
-    }
-
-    @Test
-    fun `2 pairs`() {
 
     }
 
     @Test
     fun `3 of a kind`() {
-
+        val board = Board(mutableMapOf(1 to 3, 3 to 1))
     }
 
     @Test

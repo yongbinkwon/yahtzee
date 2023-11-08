@@ -1,6 +1,5 @@
 package yahtzee
 
-import yahtzee.Dice.Companion.randomDiceValue
 import kotlin.random.Random
 
 class Dice(
@@ -9,11 +8,10 @@ class Dice(
 ) {
     companion object {
         private fun Random.randomDiceValue() = nextInt(1, 5)
+        fun board(dice: List<Dice>) = Board(dice.map(Dice::value))
     }
 
     constructor(value: Int): this(Random.Default, value)
-
-    operator fun plus(other: Board) = other.apply { addDice(value) }
 
     fun roll() = Dice(seed, seed.randomDiceValue())
 }
