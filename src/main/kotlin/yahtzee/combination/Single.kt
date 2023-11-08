@@ -1,8 +1,9 @@
 package yahtzee.combination
 
 class Single(
-    diceValue: Int,
-    frequency: Int
-): Combination(diceValue, diceValue*frequency) {
-    override fun toString() = "Single"
+    private val diceValue: Int,
+    private val frequency: Int
+): Combination() {
+    override val score = diceValue*frequency
+    override fun result() = "$frequency counts of $diceValue's: $score points"
 }

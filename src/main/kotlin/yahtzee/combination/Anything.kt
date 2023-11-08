@@ -1,7 +1,7 @@
 package yahtzee.combination
 
 class Anything(
-    diceValues: List<Int>
-): Combination(score = diceValues.sum()) {
+    override val score: Int
+): Combination() {
     override fun result() = "Sum of dice: $score points"
 }

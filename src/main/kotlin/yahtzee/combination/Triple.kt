@@ -1,8 +1,9 @@
 package yahtzee.combination
 
 class Triple(
-    diceValue: Int
-): Combination(diceValue, 3*diceValue) {
-    override fun subset() = listOf(Single(diceValue, 3))
-    override fun toString() = "Three of a kind"
+    private val valueOfTripleDice: Int,
+    override val score: Int
+): Combination() {
+    override fun result() = "Triple $valueOfTripleDice's: $score points"
+    override fun subset() = listOf(Single(valueOfTripleDice, 3))
 }

@@ -11,7 +11,7 @@ class BoardTest {
 
     @Test
     fun `3 of a kind`() {
-        val board = Board(mutableMapOf(1 to 3, 3 to 1))
+        val board = Board(listOf())
     }
 
     @Test

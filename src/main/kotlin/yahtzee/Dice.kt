@@ -10,8 +10,11 @@ class Dice(
         private fun Random.randomDiceValue() = nextInt(1, 5)
         fun board(dice: List<Dice>) = Board(dice.map(Dice::value))
     }
-
     constructor(value: Int): this(Random.Default, value)
+
+    init {
+        require(value in 1..4) { "value of dice must be in range [1, 4]" }
+    }
 
     fun roll() = Dice(seed, seed.randomDiceValue())
 }
