@@ -8,7 +8,7 @@ class Dice(
 ) {
     companion object {
         private fun Random.randomDiceValue() = nextInt(1, 5)
-        fun board(dice: List<Dice>) = Board(dice.map(Dice::value))
+        fun board(dice: List<Dice>) = Board(*dice.map(Dice::value).toIntArray())
     }
     constructor(value: Int): this(Random.Default, value)
 
