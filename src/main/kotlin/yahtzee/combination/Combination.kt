@@ -3,7 +3,7 @@ package yahtzee.combination
 
 abstract class Combination {
     protected abstract val score: Int
-    open fun subset(): List<Combination> = listOf()
+    open fun subset(): Set<Combination> = setOf()
     operator fun plus(other: Combination) = score + other.score
 
     override fun equals(other: Any?) = this === other || this sameAs other
