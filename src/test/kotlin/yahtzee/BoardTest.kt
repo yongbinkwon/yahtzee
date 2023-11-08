@@ -2,11 +2,10 @@ package yahtzee
 
 import org.junit.jupiter.api.Test
 
-class ScoreTest {
+class BoardTest {
 
     @Test
     fun singles() {
-        println(Score(listOf(1, 2, 3, 4)).result())
     }
 
     @Test
