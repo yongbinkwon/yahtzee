@@ -5,5 +5,5 @@ class Single(
     private val frequency: Int
 ): Combination() {
     override val score = diceValue*frequency
-    override fun result() = "$frequency counts of $diceValue's: $score points"
+    override fun toString() = "$frequency counts of $diceValue's: $score points"
 }
