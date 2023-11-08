@@ -1,5 +1,6 @@
 package yahtzee
 
+/*
 class Round {
 
     fun rollDice(dice: List<Dice>) {
@@ -7,3 +8,5 @@ class Round {
 
     }
 }
+
+ */
