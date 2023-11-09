@@ -1,9 +1,9 @@
 package yahtzee
 
-import org.junit.jupiter.api.assertThrows
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class DieTest {
@@ -18,18 +18,18 @@ class DieTest {
     @Test
     fun `die can not have negative values`() {
         val illegalDieValue = Random.Default.nextInt(-100, 0)
-        assertThrows<IllegalArgumentException> { Die(illegalDieValue) }
+        assertFailsWith<IllegalArgumentException> { Die(illegalDieValue) }
     }
 
     @Test
     fun `die can not have value zero`() {
-        assertThrows<IllegalArgumentException> { Die(0) }
+        assertFailsWith<IllegalArgumentException> { Die(0) }
     }
 
     @Test
     fun `die can not have values above 4`() {
         val illegalDieValue = Random.Default.nextInt(5, 100)
-        assertThrows<IllegalArgumentException> { Die(illegalDieValue) }
+        assertFailsWith<IllegalArgumentException> { Die(illegalDieValue) }
     }
 
     @Test
