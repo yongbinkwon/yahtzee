@@ -10,10 +10,10 @@ class Yahtzee(
         private fun yahtzeeDice(die: Die) = List(4) { die }
     }
 
-    override val score = 36
+    override fun score() = 36
     override fun subset() = setOf(
         Single.single(yahtzeeDie, 4),
         ThreeOfAKind(yahtzeeDice(yahtzeeDie))
     )
-    override fun toString() = "Yahtzee!! That's $score points :O"
+    override fun toString() = "Yahtzee!! That's ${score()} points :O"
 }

@@ -6,9 +6,9 @@ import yahtzee.Die
 abstract class Combination(
     private val diceForScoring: List<Die>
 ) {
-    protected open val score = diceForScoring.fold(0) { acc, dice ->  dice + acc}
+    open fun score() = diceForScoring.fold(0) { acc, dice ->  dice + acc}
     open fun subset(): Set<Combination> = setOf()
-    operator fun plus(other: Combination) = score + other.score
+    operator fun plus(other: Combination) = score() + other.score()
 
     override fun equals(other: Any?) = this === other || this sameAs other
 
@@ -19,8 +19,8 @@ abstract class Combination(
     private fun diceCounts() = diceForScoring.groupingBy { it }.eachCount()
 
     override fun hashCode(): Int {
-        var result = score.hashCode()
-        result = 31 * result + this::class.hashCode()
+        var result = this::class.hashCode()
+        result = 31 * result + diceCounts().hashCode()
         return result
     }
 }

@@ -8,7 +8,7 @@ class Straight: Combination(STRAIGHT) {
         private val STRAIGHT = listOf(Die.ONE, Die.TWO, Die.THREE, Die.FOUR)
     }
 
-    override val score = 20
+    override fun score() = 20
     override fun subset() = setOf(Ones(1), Twos(1), Threes(1), Fours(1))
-    override fun toString() = "Straight: $score points"
+    override fun toString() = "Straight: ${score()} points"
 }

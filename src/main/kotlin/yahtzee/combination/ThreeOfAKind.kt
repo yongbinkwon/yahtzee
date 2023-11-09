@@ -11,5 +11,5 @@ class ThreeOfAKind(
         numberOfEachDie(dice).firstOrNull { it.value >= 3 }?.key ?: throw IllegalArgumentException("No triplets found")
 
     override fun subset() = setOf(Single.single(threeOfAKindDice, 3))
-    override fun toString() = "Three $threeOfAKindDice's: $score points"
+    override fun toString() = "Three $threeOfAKindDice's: ${score()} points"
 }

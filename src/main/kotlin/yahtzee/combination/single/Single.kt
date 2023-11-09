@@ -20,5 +20,5 @@ abstract class Single(
             else -> throw IllegalArgumentException("Die is $die but should be in range [1, 4]")
         }
     }
-    override fun toString() = "$frequency counts of $die's: $score points"
+    override fun toString() = "$frequency counts of $die's: ${score()} points"
 }
