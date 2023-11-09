@@ -6,9 +6,12 @@ import yahtzee.Die
 abstract class Combination(
     private val diceForScoring: List<Die>
 ) {
+    init {
+        require(diceForScoring.size in 1..4) { "between 1 to 4 die in a combination" }
+    }
+
     open fun score() = diceForScoring.fold(0) { acc, dice ->  dice + acc}
     open fun subset(): Set<Combination> = setOf()
-    operator fun plus(other: Combination) = score() + other.score()
 
     override fun equals(other: Any?) = this === other || this sameAs other
 
