@@ -12,14 +12,14 @@ class Dice(
         val THREE = Dice(3)
         val FOUR = Dice(4)
         private fun Random.randomDiceValue() = nextInt(1, 5)
-        fun board(dice: List<Dice>) = Board(*dice.map(Dice::value).toIntArray())
     }
     constructor(value: Int): this(Random.Default, value)
 
     init {
         require(value in 1..4) { "value of dice must be in range [1, 4]" }
     }
-    operator fun plus(other: Int) = value + other
+    operator fun plus(addend: Int) = value + addend
+    operator fun times(frequency: Int) = value * frequency
 
     fun roll() = Dice(seed, seed.randomDiceValue())
 

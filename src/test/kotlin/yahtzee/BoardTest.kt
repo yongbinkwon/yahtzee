@@ -2,52 +2,54 @@ package yahtzee
 
 import org.junit.jupiter.api.Test
 import yahtzee.combination.*
+import yahtzee.combination.single.Single
 import kotlin.test.assertEquals
 
 class BoardTest {
 
     @Test
     fun `3 of a kind`() {
-        val threeOfAKindDiceValue = (1..4).random()
-        val singleDiceValue = (1..4).shuffled().first { it != threeOfAKindDiceValue }
-        val diceValues =
-            randomlyOrderedDiceValues(threeOfAKindDiceValue, threeOfAKindDiceValue, threeOfAKindDiceValue, singleDiceValue)
-        val board = Board(*diceValues)
-        val expectedCombinations = threeOfAKindCombinations(threeOfAKindDiceValue, singleDiceValue)
+        val threeOfAKindDie = diceSetWithAllValues().random()
+        val singleDie = diceSetWithAllValues().shuffled().first { it != threeOfAKindDie }
+        val dice =
+            randomlyOrderedDice(threeOfAKindDie, threeOfAKindDie, threeOfAKindDie, singleDie)
+        val board = Board(dice)
+        val expectedCombinations = threeOfAKindCombinations(threeOfAKindDie, singleDie)
         assertEquals(expectedCombinations, board.combinations())
     }
 
     @Test
     fun straight() {
-        val diceValues = randomlyOrderedDiceValues(1, 2, 3, 4)
-        val board = Board(*diceValues)
+        val dice = randomlyOrderedDice(*diceSetWithAllValues().toTypedArray())
+        val board = Board(dice)
         val expectedCombinations = setOf(
             Straight(),
-            Chance(diceValues.sum()),
-            Single(1, 1),
-            Single(2, 1),
-            Single(3, 1),
-            Single(4, 1)
+            Chance(dice),
+            Single.single(Dice.ONE, 1),
+            Single.single(Dice.TWO, 1),
+            Single.single(Dice.THREE, 1),
+            Single.single(Dice.FOUR, 1),
         )
         assertEquals(expectedCombinations, board.combinations())
     }
 
     @Test
     fun yahtzee() {
-        val diceValue = (1..4).random()
-        val board = Board(diceValue, diceValue, diceValue, diceValue)
+        val yahtzeeDie = diceSetWithAllValues().random()
+        val dice = List(4) { yahtzeeDie }
+        val board = Board(dice)
         val expectedCombinations = setOf(
-            Yahtzee(diceValue), ThreeOfAKind(diceValue, diceValue*4), Single(diceValue, 4), Chance(diceValue*4)
+            Yahtzee(yahtzeeDie), ThreeOfAKind(dice), Single.single(yahtzeeDie, 4), Chance(dice)
         )
         assertEquals(expectedCombinations, board.combinations())
     }
 
-    private fun randomlyOrderedDiceValues(vararg diceValue: Int) = diceValue.apply { shuffle() }
+    private fun diceSetWithAllValues() = listOf(Dice.ONE, Dice.TWO, Dice.THREE, Dice.FOUR)
 
-    private fun threeOfAKindCombinations(threeOfAKindDiceValue: Int, singleDiceValue: Int) = setOf(
-        ThreeOfAKind(threeOfAKindDiceValue, 3*threeOfAKindDiceValue + singleDiceValue),
-        Single(threeOfAKindDiceValue, 3),
-        Single(singleDiceValue, 1),
-        Chance(3*threeOfAKindDiceValue + singleDiceValue)
-    )
+    private fun randomlyOrderedDice(vararg dice: Dice) = dice.apply { shuffle() }.toList()
+
+    private fun threeOfAKindCombinations(theeOfAKindDie: Dice, singleDie: Dice): Set<Combination> {
+        val dice = listOf(theeOfAKindDie, theeOfAKindDie, theeOfAKindDie, singleDie)
+        return setOf(ThreeOfAKind(dice), Single.single(theeOfAKindDie, 3), Single.single(singleDie, 1), Chance(dice))
+    }
 }

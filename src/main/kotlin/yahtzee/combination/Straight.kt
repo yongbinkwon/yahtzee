@@ -9,6 +9,6 @@ class Straight: Combination(STRAIGHT) {
     }
 
     override val score = 20
-    override fun subset() = setOf(Ones(1), Twos(1), Threes(1), Fours(4))
+    override fun subset() = setOf(Ones(1), Twos(1), Threes(1), Fours(1))
     override fun toString() = "Straight: $score points"
 }
