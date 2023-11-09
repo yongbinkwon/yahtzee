@@ -1,7 +1,9 @@
 package yahtzee.combination
 
+import yahtzee.Dice
+
 class Chance(
-    override val score: Int
-): Combination() {
+    dice: List<Dice>
+): Combination(dice) {
     override fun toString() = "Chance (sum of all dice): $score points"
 }

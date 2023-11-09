@@ -1,12 +1,14 @@
 package yahtzee.combination
 
-class Straight: Combination() {
+import yahtzee.Dice
+import yahtzee.combination.single.*
+
+class Straight: Combination(STRAIGHT) {
+    companion object {
+        private val STRAIGHT = listOf(Dice.ONE, Dice.TWO, Dice.THREE, Dice.FOUR)
+    }
+
     override val score = 20
-    override fun subset() = setOf(
-        Single(1, 1),
-        Single(2, 1),
-        Single(3, 1),
-        Single(4, 1)
-    )
+    override fun subset() = setOf(Ones(1), Twos(1), Threes(1), Fours(4))
     override fun toString() = "Straight: $score points"
 }
