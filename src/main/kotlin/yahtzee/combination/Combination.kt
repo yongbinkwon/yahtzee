@@ -1,10 +1,10 @@
 package yahtzee.combination
 
-import yahtzee.Dice
+import yahtzee.Die
 
 
 abstract class Combination(
-    private val diceForScoring: List<Dice>
+    private val diceForScoring: List<Die>
 ) {
     protected open val score = diceForScoring.fold(0) { acc, dice ->  dice + acc}
     open fun subset(): Set<Combination> = setOf()

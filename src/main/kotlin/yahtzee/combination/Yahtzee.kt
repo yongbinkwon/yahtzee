@@ -1,19 +1,19 @@
 package yahtzee.combination
 
-import yahtzee.Dice
+import yahtzee.Die
 import yahtzee.combination.single.Single
 
 class Yahtzee(
-    private val yahtzeeDice: Dice
-): Combination(yahtzeeDice(yahtzeeDice)) {
+    private val yahtzeeDie: Die
+): Combination(yahtzeeDice(yahtzeeDie)) {
     companion object {
-        private fun yahtzeeDice(die: Dice) = List(4) { die }
+        private fun yahtzeeDice(die: Die) = List(4) { die }
     }
 
     override val score = 36
     override fun subset() = setOf(
-        Single.single(yahtzeeDice, 4),
-        ThreeOfAKind(yahtzeeDice(yahtzeeDice))
+        Single.single(yahtzeeDie, 4),
+        ThreeOfAKind(yahtzeeDice(yahtzeeDie))
     )
     override fun toString() = "Yahtzee!! That's $score points :O"
 }

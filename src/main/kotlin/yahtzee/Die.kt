@@ -2,15 +2,15 @@ package yahtzee
 
 import kotlin.random.Random
 
-class Dice(
+class Die(
     private val seed: Random,
     private val value: Int = seed.randomDiceValue()
 ) {
     companion object {
-        val ONE = Dice(1)
-        val TWO = Dice(2)
-        val THREE = Dice(3)
-        val FOUR = Dice(4)
+        val ONE = Die(1)
+        val TWO = Die(2)
+        val THREE = Die(3)
+        val FOUR = Die(4)
         private fun Random.randomDiceValue() = nextInt(1, 5)
     }
     constructor(value: Int): this(Random.Default, value)
@@ -21,9 +21,9 @@ class Dice(
     operator fun plus(addend: Int) = value + addend
     operator fun times(frequency: Int) = value * frequency
 
-    fun roll() = Dice(seed, seed.randomDiceValue())
+    fun roll() = Die(seed, seed.randomDiceValue())
 
     override fun toString() = "$value"
-    override fun equals(other: Any?) = this === other || (other is Dice && value==other.value)
+    override fun equals(other: Any?) = this === other || (other is Die && value==other.value)
     override fun hashCode() = value.hashCode()
 }

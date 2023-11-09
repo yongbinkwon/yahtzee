@@ -1,24 +1,24 @@
 package yahtzee.combination.single
 
-import yahtzee.Dice
-import yahtzee.Dice.Companion.FOUR
-import yahtzee.Dice.Companion.ONE
-import yahtzee.Dice.Companion.THREE
-import yahtzee.Dice.Companion.TWO
+import yahtzee.Die
+import yahtzee.Die.Companion.FOUR
+import yahtzee.Die.Companion.ONE
+import yahtzee.Die.Companion.THREE
+import yahtzee.Die.Companion.TWO
 import yahtzee.combination.Combination
 
 abstract class Single(
-    private val dice: Dice,
+    private val die: Die,
     private val frequency: Int
-): Combination(List(frequency) { dice }) {
+): Combination(List(frequency) { die }) {
     companion object {
-        fun single(dice: Dice, frequency: Int) = when(dice) {
+        fun single(die: Die, frequency: Int) = when(die) {
             ONE -> Ones(frequency)
             TWO -> Twos(frequency)
             THREE -> Threes(frequency)
             FOUR -> Fours(frequency)
-            else -> throw IllegalArgumentException("Dice is $dice but should be in range [1, 4]")
+            else -> throw IllegalArgumentException("Die is $die but should be in range [1, 4]")
         }
     }
-    override fun toString() = "$frequency counts of $dice's: $score points"
+    override fun toString() = "$frequency counts of $die's: $score points"
 }

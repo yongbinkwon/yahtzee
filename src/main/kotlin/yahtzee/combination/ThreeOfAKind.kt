@@ -1,12 +1,12 @@
 package yahtzee.combination
 
-import yahtzee.Dice
+import yahtzee.Die
 import yahtzee.combination.single.Single
 
 class ThreeOfAKind(
-    dice: List<Dice>
+    dice: List<Die>
 ): Combination(dice) {
-    private fun numberOfEachDie(dice: List<Dice>) = dice.groupingBy { it }.eachCount().entries
+    private fun numberOfEachDie(dice: List<Die>) = dice.groupingBy { it }.eachCount().entries
     private val threeOfAKindDice =
         numberOfEachDie(dice).firstOrNull { it.value >= 3 }?.key ?: throw IllegalArgumentException("No triplets found")
 

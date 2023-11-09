@@ -1,11 +1,11 @@
 package yahtzee.combination
 
-import yahtzee.Dice
+import yahtzee.Die
 import yahtzee.combination.single.*
 
 class Straight: Combination(STRAIGHT) {
     companion object {
-        private val STRAIGHT = listOf(Dice.ONE, Dice.TWO, Dice.THREE, Dice.FOUR)
+        private val STRAIGHT = listOf(Die.ONE, Die.TWO, Die.THREE, Die.FOUR)
     }
 
     override val score = 20

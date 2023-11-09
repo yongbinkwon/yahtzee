@@ -25,10 +25,10 @@ class BoardTest {
         val expectedCombinations = setOf(
             Straight(),
             Chance(dice),
-            Single.single(Dice.ONE, 1),
-            Single.single(Dice.TWO, 1),
-            Single.single(Dice.THREE, 1),
-            Single.single(Dice.FOUR, 1),
+            Single.single(Die.ONE, 1),
+            Single.single(Die.TWO, 1),
+            Single.single(Die.THREE, 1),
+            Single.single(Die.FOUR, 1),
         )
         assertEquals(expectedCombinations, board.combinations())
     }
@@ -44,11 +44,11 @@ class BoardTest {
         assertEquals(expectedCombinations, board.combinations())
     }
 
-    private fun diceSetWithAllValues() = listOf(Dice.ONE, Dice.TWO, Dice.THREE, Dice.FOUR)
+    private fun diceSetWithAllValues() = listOf(Die.ONE, Die.TWO, Die.THREE, Die.FOUR)
 
-    private fun randomlyOrderedDice(vararg dice: Dice) = dice.apply { shuffle() }.toList()
+    private fun randomlyOrderedDice(vararg dice: Die) = dice.apply { shuffle() }.toList()
 
-    private fun threeOfAKindCombinations(theeOfAKindDie: Dice, singleDie: Dice): Set<Combination> {
+    private fun threeOfAKindCombinations(theeOfAKindDie: Die, singleDie: Die): Set<Combination> {
         val dice = listOf(theeOfAKindDie, theeOfAKindDie, theeOfAKindDie, singleDie)
         return setOf(ThreeOfAKind(dice), Single.single(theeOfAKindDie, 3), Single.single(singleDie, 1), Chance(dice))
     }

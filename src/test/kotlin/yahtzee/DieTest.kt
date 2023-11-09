@@ -2,7 +2,7 @@ package yahtzee
 
 import kotlin.test.Test
 
-class DiceTest {
+class DieTest {
 
     @Test
     fun `dice correctly changes value when rolled`() {

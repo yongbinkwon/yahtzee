@@ -1,5 +1,5 @@
 package yahtzee.combination.single
 
-import yahtzee.Dice
+import yahtzee.Die
 
-class Ones(frequency: Int): Single(Dice.ONE, frequency)
+class Ones(frequency: Int): Single(Die.ONE, frequency)
