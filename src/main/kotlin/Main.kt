@@ -1,3 +1,7 @@
+import yahtzee.ScoreSheet
+import yahtzee.game.YahtzeeGame
+
 fun main() {
-    println("yahtzee pahtzee")
+    val scoreSheet = ScoreSheet()
+    val yahtzeeGame = YahtzeeGame().round(scoreSheet)
 }

@@ -3,7 +3,7 @@ package yahtzee
 import kotlin.random.Random
 
 class Die(
-    private val seed: Random,
+    private val seed: Random = Random.Default,
     private val value: Int = seed.randomDiceValue()
 ) {
     companion object {
@@ -16,7 +16,7 @@ class Die(
     constructor(value: Int): this(Random.Default, value)
 
     init {
-        require(value in 1..4) { "value of dice must be in range [1, 4]" }
+        require(value in 1..4) { "value of die must be in range [1, 4]" }
     }
     operator fun plus(addend: Int) = value + addend
     operator fun times(frequency: Int) = value * frequency

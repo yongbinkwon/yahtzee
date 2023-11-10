@@ -23,11 +23,6 @@ class CombinationTest {
     }
 
     @Test
-    fun `combinations can't have zero die`() {
-        assertFailsWith<IllegalArgumentException> { ThreeOfAKind(listOf()) }
-    }
-
-    @Test
     fun `combinations can't have more than four die`() {
         assertFailsWith<IllegalArgumentException> { ThreeOfAKind(List(5) { Die.ONE }) }
     }
@@ -50,7 +45,7 @@ class CombinationTest {
         }
 
         @Test
-        fun `singles correctly has score equals frequency*dieValue`() {
+        fun `singles correctly has score equals frequency times dieValue`() {
             val frequency = randomFrequency()
             val singles = allSingles(frequency)
             for ((i, single) in singles.withIndex()) {

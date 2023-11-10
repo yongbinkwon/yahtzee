@@ -21,15 +21,15 @@ class Board(
     }
 
     private fun allCombinations() = board.entries.fold(mutableSetOf<Combination>()) { acc, (dice, frequency) ->
-        val combinations = combinationPerDiceValue(dice, frequency)
+        val combinations = combinationPerDie(dice, frequency)
         if (combinations.any(acc::contains)) throw RuntimeException("duplicate combinations")
         acc.apply { addAll(combinations) }
     } + Chance(dice)
 
-    private fun combinationPerDiceValue(die: Die, frequency: Int) = when (frequency) {
+    private fun combinationPerDie(die: Die, frequency: Int) = when (frequency) {
         1, 2 -> setOf(Single.single(die, frequency))
         3 -> ThreeOfAKind(dice).let { it.subset() + it }
         4 -> Yahtzee(die).let { it.subset() + it }
-        else -> throw IllegalArgumentException("Number of dice is $frequency when it should be in range [1, 4]")
+        else -> throw IllegalArgumentException("Number of $die's is $frequency when it should be in range [1, 4]")
     }
 }

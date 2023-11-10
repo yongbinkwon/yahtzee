@@ -1,6 +1,7 @@
 package yahtzee.combination
 
 import yahtzee.Die
+import yahtzee.combination.blank.Blank
 import yahtzee.combination.single.Single
 
 class Yahtzee(
@@ -11,9 +12,7 @@ class Yahtzee(
     }
 
     override fun score() = 36
-    override fun subset() = setOf(
-        Single.single(yahtzeeDie, 4),
-        ThreeOfAKind(yahtzeeDice(yahtzeeDie))
-    )
-    override fun toString() = "Yahtzee!! That's ${score()} points :O"
+    override fun subset() = setOf(Single.single(yahtzeeDie, 4), ThreeOfAKind(yahtzeeDice(yahtzeeDie)))
+    override fun result() = "Yahtzee!! That's ${score()} points :O"
+    override fun toString() = "yahtzee"
 }
