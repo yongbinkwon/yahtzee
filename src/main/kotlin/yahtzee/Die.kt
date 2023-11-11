@@ -7,10 +7,10 @@ class Die(
     private val value: Int = seed.randomDiceValue()
 ) {
     companion object {
-        val ONE = Die(1)
-        val TWO = Die(2)
-        val THREE = Die(3)
-        val FOUR = Die(4)
+        fun one() = Die(1)
+        fun two() = Die(2)
+        fun three() = Die(3)
+        fun four() = Die(4)
         private fun Random.randomDiceValue() = nextInt(1, 5)
     }
     constructor(value: Int): this(Random.Default, value)

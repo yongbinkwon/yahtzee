@@ -2,9 +2,9 @@ package yahtzee.combination
 
 import yahtzee.Die
 
-class Chance(
-    dice: List<Die>
-): Combination(dice) {
-    override fun result() = "Chance (sum of all dice): ${score()} points"
+class Chance: Combination() {
+    override val combinationDescription = "chance (sum of dice)"
+    override fun score(dice: List<Die>) = sumOfDice(dice)
+
     override fun toString() = "chance"
 }

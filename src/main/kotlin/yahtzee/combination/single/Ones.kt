@@ -2,6 +2,6 @@ package yahtzee.combination.single
 
 import yahtzee.Die
 
-class Ones(frequency: Int): Single(Die.ONE, frequency) {
-    override fun toString() = "ones"
+class Ones: Single(Die.one()) {
+    override val combinationDescription = "ones"
 }

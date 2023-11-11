@@ -1,33 +1,15 @@
 package yahtzee.combination
 
 import yahtzee.Die
-import kotlin.reflect.KClass
+import yahtzee.score.ScoreSheetEntry
 
 
-abstract class Combination(
-    private val diceForScoring: List<Die>
-) {
-    init {
-        require(diceForScoring.size in 0..4) { "between 0 to 4 dice in a combination" }
-    }
-    open fun score() = diceForScoring.fold(0) { acc, dice ->  dice + acc}
-    open fun subset(): Set<Combination> = setOf()
-    abstract fun result(): String
+abstract class Combination {
+    protected abstract val combinationDescription: String
+    protected abstract fun score(dice: List<Die>): Int
 
-    override fun equals(other: Any?) = this === other || this sameAs other
+    fun scoreSheetEntry(dice: List<Die>) = ScoreSheetEntry(combinationDescription, score(dice))
+    fun blankEntry() = ScoreSheetEntry("fill blank for $combinationDescription", 0)
 
-    private infix fun sameAs(other: Any?) =
-        other is Combination && this::class==other::class && this sameDice other
-
-    private infix fun sameDice(other: Combination) = diceCounts() == other.diceCounts()
-
-    private fun diceCounts() = diceForScoring.groupingBy { it }.eachCount()
-
-    override fun hashCode(): Int {
-        var result = this::class.hashCode()
-        result = 31 * result + diceCounts().hashCode()
-        return result
-    }
+    protected fun sumOfDice(dice: List<Die>) = dice.fold(0) { acc, die -> die + acc}
 }
-
-typealias CombinationType = KClass<out Combination>

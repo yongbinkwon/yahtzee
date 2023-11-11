@@ -1,24 +1,20 @@
 package yahtzee.combination.single
 
 import yahtzee.Die
-import yahtzee.Die.Companion.FOUR
-import yahtzee.Die.Companion.ONE
-import yahtzee.Die.Companion.THREE
-import yahtzee.Die.Companion.TWO
 import yahtzee.combination.Combination
 
 abstract class Single(
-    private val die: Die,
-    private val frequency: Int
-): Combination(List(frequency) { die }) {
+    private val countedDie: Die
+): Combination() {
     companion object {
-        fun single(die: Die, frequency: Int) = when(die) {
-            ONE -> Ones(frequency)
-            TWO -> Twos(frequency)
-            THREE -> Threes(frequency)
-            FOUR -> Fours(frequency)
+        fun single(die: Die) = when(die) {
+            Die.one() -> Ones()
+            Die.two() -> Twos()
+            Die.three() -> Threes()
+            Die.four() -> Fours()
             else -> throw IllegalArgumentException("Die is $die but should be in range [1, 4]")
         }
     }
-    override fun result() = "$frequency counts of $die's: ${score()} points"
+    override fun score(dice: List<Die>) = countedDie*dice.frequencyOfDie(countedDie)
+    private fun List<Die>.frequencyOfDie(die: Die) = count { it==die }
 }
