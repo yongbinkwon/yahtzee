@@ -3,7 +3,7 @@ package yahtzee.combination
 import yahtzee.Die
 import yahtzee.combination.single.*
 
-class Straight: Combination() {
+object Straight: Combination() {
     override val combinationDescription = "straight"
     override fun score(dice: List<Die>) = 20
 }
