@@ -3,8 +3,9 @@ package yahtzee.game
 import yahtzee.Board
 import yahtzee.Die
 import yahtzee.combination.Combination
-import yahtzee.combination.blank.Blank
+import yahtzee.score.ScoreSheet
 
+/*
 class YahtzeeGame {
     companion object {
         private const val REROLL_STRING = "reroll"
@@ -69,4 +70,6 @@ class YahtzeeGame {
         if (selectedCombination == REROLL_STRING) { return null }
         return possibleCombinations[selectedCombination.toInt() - 1]
     }
+
 }
+     */

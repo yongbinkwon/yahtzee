@@ -15,21 +15,22 @@ class Board(
         acc
     }
 
-    fun combinations(): Set<Combination> {
-        if (board.keys.size == 4) return Straight().let { it.subset() + it + Chance(dice) }
-        return allCombinations()
-    }
+    fun combinations() = frequencyBasedCombinations() + (if (board.keys.size == 4) setOf(Straight) else setOf()) + Chance
 
-    private fun allCombinations() = board.entries.fold(mutableSetOf<Combination>()) { acc, (dice, frequency) ->
-        val combinations = combinationPerDie(dice, frequency)
+    private fun frequencyBasedCombinations() = board.entries.fold(mutableSetOf<Combination>()) { acc, (die, frequency) ->
+        val combinations = combinationsPerDie(die, frequency)
         if (combinations.any(acc::contains)) throw RuntimeException("duplicate combinations")
         acc.apply { addAll(combinations) }
-    } + Chance(dice)
+    } + Chance
 
-    private fun combinationPerDie(die: Die, frequency: Int) = when (frequency) {
-        1, 2 -> setOf(Single.single(die, frequency))
-        3 -> ThreeOfAKind(dice).let { it.subset() + it }
-        4 -> Yahtzee(die).let { it.subset() + it }
-        else -> throw IllegalArgumentException("Number of $die's is $frequency when it should be in range [1, 4]")
+    private fun combinationsPerDie(die: Die, frequency: Int) = listOf(1, 3, 4)
+        .filter { it <= frequency }
+        .map { combination(die, it)}
+
+    private fun combination(die: Die, frequencyOfDie: Int) = when(frequencyOfDie) {
+        1 -> Single.single(die)
+        3 -> ThreeOfAKind
+        4 -> Yahtzee
+        else -> throw IllegalArgumentException("Number of $die's is $frequencyOfDie when it should be in [1, 3, 4]")
     }
 }
