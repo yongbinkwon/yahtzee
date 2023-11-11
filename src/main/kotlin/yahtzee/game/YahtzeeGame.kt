@@ -2,7 +2,6 @@ package yahtzee.game
 
 import yahtzee.Board
 import yahtzee.Die
-import yahtzee.ScoreSheet
 import yahtzee.combination.Combination
 import yahtzee.combination.blank.Blank
 
@@ -11,7 +10,19 @@ class YahtzeeGame {
         private const val REROLL_STRING = "reroll"
     }
 
-    fun round(scoreSheet: ScoreSheet) {
+    fun startGame(player1: String, player2: String) {
+        val scoreSheet1 = ScoreSheet(player1)
+        val scoreSheet2 = ScoreSheet(player2)
+        while (!(scoreSheet1.filledOut() && scoreSheet2.filledOut())) {
+            round(scoreSheet1)
+            round(scoreSheet2)
+        }
+        println(scoreSheet1.results())
+        println(scoreSheet2.results())
+        scoreSheet1 versus scoreSheet2
+    }
+
+    private fun round(scoreSheet: ScoreSheet) {
         var numberOfRolls = 0
         var dice = List(4) { Die() }
         numberOfRolls += 1

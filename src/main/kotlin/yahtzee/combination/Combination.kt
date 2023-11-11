@@ -1,6 +1,7 @@
 package yahtzee.combination
 
 import yahtzee.Die
+import kotlin.reflect.KClass
 
 
 abstract class Combination(
@@ -28,3 +29,5 @@ abstract class Combination(
         return result
     }
 }
+
+typealias CombinationType = KClass<out Combination>
