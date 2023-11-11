@@ -8,10 +8,10 @@ abstract class Single(
 ): Combination() {
     companion object {
         fun single(die: Die) = when(die) {
-            Die.one() -> Ones()
-            Die.two() -> Twos()
-            Die.three() -> Threes()
-            Die.four() -> Fours()
+            Die.one() -> Ones
+            Die.two() -> Twos
+            Die.three() -> Threes
+            Die.four() -> Fours
             else -> throw IllegalArgumentException("Die is $die but should be in range [1, 4]")
         }
     }
