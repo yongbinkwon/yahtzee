@@ -1,5 +1,14 @@
 import yahtzee.game.YahtzeeGame
 
-fun main() {
-    YahtzeeGame().startGame("bin", "kenneth")
+fun main(args: Array<String>) {
+    if (args.size == 2) {
+        YahtzeeGame().startGame(args[0], args[1])
+    } else {
+        val defaultPlayerName1 = "bin"
+        val defaultPlayerName2 = "kenneth"
+        println("didn't get two arguments for p1 and p2 name, " +
+                "going with default names $defaultPlayerName1 (wii) and $defaultPlayerName2 (boo)")
+        YahtzeeGame().startGame(defaultPlayerName1, defaultPlayerName2)
+    }
+
 }
