@@ -1,7 +1,6 @@
 package yahtzee
 
 import yahtzee.combination.*
-import yahtzee.combination.Single
 
 class Board(
     private val dice: List<Die>
@@ -28,7 +27,7 @@ class Board(
         .map { combination(die, it)}
 
     private fun combination(die: Die, frequencyOfDie: Int) = when(frequencyOfDie) {
-        1 -> Single.single(die)
+        1 -> singleDieCombination(die)
         3 -> ThreeOfAKind
         4 -> Yahtzee
         else -> throw IllegalArgumentException("Number of $die's is $frequencyOfDie when it should be in [1, 3, 4]")

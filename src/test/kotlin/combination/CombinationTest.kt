@@ -15,7 +15,7 @@ class CombinationTest {
         @Test
         fun `single() correctly generates singles`() {
             for ((i, expectedValue) in everySingle.withIndex()) {
-                val actualValue = Single.single(Die(i+1))
+                val actualValue = singleDieCombination(Die(i+1))
                 assertEquals(expectedValue, actualValue)
             }
         }
@@ -25,7 +25,7 @@ class CombinationTest {
             val dice = List(4) { Die() }
             everyDie.forEach { die ->
                 val expectedScore = die*dice.count { it == die }
-                assertEquals(expectedScore, Single.single(die).score(dice))
+                assertEquals(expectedScore, singleDieCombination(die).score(dice))
             }
         }
     }

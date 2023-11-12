@@ -1,10 +1,6 @@
 package yahtzee.score
 
 import yahtzee.combination.*
-import yahtzee.combination.Fours
-import yahtzee.combination.Ones
-import yahtzee.combination.Threes
-import yahtzee.combination.Twos
 
 class ScoreCard(
     private val playerName: String,

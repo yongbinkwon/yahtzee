@@ -13,7 +13,7 @@ class BoardTest {
         val dice =
             randomlyOrderedDice(listOf(threeOfAKindDie, threeOfAKindDie, threeOfAKindDie, singleDie))
         val board = Board(dice)
-        val expectedCombinations = setOf(ThreeOfAKind, Single.single(singleDie), Single.single(threeOfAKindDie), Chance)
+        val expectedCombinations = setOf(ThreeOfAKind, singleDieCombination(singleDie), singleDieCombination(threeOfAKindDie), Chance)
         assertEquals(expectedCombinations, board.combinations())
     }
 
@@ -31,7 +31,7 @@ class BoardTest {
         val yahtzeeDie = diceSetWithAllValues().random()
         val dice = List(4) { yahtzeeDie }
         val board = Board(dice)
-        val expectedCombinations = setOf(Yahtzee, ThreeOfAKind, Single.single(yahtzeeDie), Chance)
+        val expectedCombinations = setOf(Yahtzee, ThreeOfAKind, singleDieCombination(yahtzeeDie), Chance)
         assertEquals(expectedCombinations, board.combinations())
     }
 
