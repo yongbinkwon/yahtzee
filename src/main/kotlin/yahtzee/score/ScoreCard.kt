@@ -6,10 +6,6 @@ class ScoreCard(
     private val playerName: String,
     private val scores: CombinationScores = mapOf()
 ) {
-    companion object {
-        private val COMBINATIONS = setOf(Ones, Twos, Threes, Fours, ThreeOfAKind, Yahtzee, Straight, Chance)
-    }
-
     fun addScoreToCard(combination: Combination, entry: ScoreCardEntry) =
         scores[combination]?.run {
             throw IllegalStateException("combination $combination is already in score card")
@@ -18,8 +14,8 @@ class ScoreCard(
     private infix fun ScoreCardRow.addTo(scores: CombinationScores) = scores + this
     private fun scoreCardRow(combination: Combination, entry: ScoreCardEntry) = combination to entry
 
-    fun nonFilledRows() = scores.entries.filter { it.key !in COMBINATIONS }.map { it.key }
-    fun filledOut() = scores.keys == COMBINATIONS
+    fun nonFilledRows() = scores.entries.filter { it.key !in Combination.ALL_COMBINATIONS }.map { it.key }
+    fun filledOut() = scores.keys == Combination.ALL_COMBINATIONS
     fun totalScore() = scores.values.fold(0) { acc, entry -> entry + acc }
 
     override fun equals(other: Any?) = this === other || (other is ScoreCard && this.equals(other))
