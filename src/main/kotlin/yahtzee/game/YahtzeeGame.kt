@@ -1,10 +1,5 @@
 package yahtzee.game
 
-import yahtzee.Board
-import yahtzee.Die
-import yahtzee.combination.Combination
-import yahtzee.score.ScoreSheet
-
 /*
 class YahtzeeGame {
     companion object {
@@ -12,31 +7,31 @@ class YahtzeeGame {
     }
 
     fun startGame(player1: String, player2: String) {
-        val scoreSheet1 = ScoreSheet(player1)
-        val scoreSheet2 = ScoreSheet(player2)
-        while (!(scoreSheet1.filledOut() && scoreSheet2.filledOut())) {
-            round(scoreSheet1)
-            round(scoreSheet2)
+        val scoreCard1 = ScoreCard(player1)
+        val scoreCard2 = ScoreCard(player2)
+        while (!(scoreCard1.filledOut() && scoreCard2.filledOut())) {
+            round(scoreCard1)
+            round(scoreCard2)
         }
-        println(scoreSheet1.results())
-        println(scoreSheet2.results())
-        scoreSheet1 versus scoreSheet2
+        println(scoreCard1.results())
+        println(scoreCard2.results())
+        scoreCard1 versus scoreCard2
     }
 
-    private fun round(scoreSheet: ScoreSheet) {
+    private fun round(scoreCard: ScoreCard) {
         var numberOfRolls = 0
         var dice = List(4) { Die() }
         numberOfRolls += 1
         println(rollMessage(dice))
-        var combination = startSubRound(dice, scoreSheet, false)
+        var combination = startSubRound(dice, scoreCard, false)
         while (numberOfRolls < 3 && combination == null) {
             dice = reroll(dice)
             numberOfRolls += 1
             println(rollMessage(dice))
             val finalSubRound = numberOfRolls == 3
-            combination = startSubRound(dice, scoreSheet, finalSubRound)
+            combination = startSubRound(dice, scoreCard, finalSubRound)
         }
-        scoreSheet.addScoreToSheet(combination ?: throw IllegalStateException("no combos from round"))
+        scoreCard.addScoreToCard(combination ?: throw IllegalStateException("no combos from round"))
     }
 
     private fun rollMessage(dice: List<Die>) = "You rolled the dice and got ${dice.joinToString()}"
@@ -51,9 +46,9 @@ class YahtzeeGame {
     private fun rerollMessage(dice: List<Die>) =
         "select which dice out of ${dice.joinToString()} to reroll, dice are numbered 1-4. If you want to reroll multiple separate with space"
 
-    private fun startSubRound(dice: List<Die>, scoreSheet: ScoreSheet, finalSubRound: Boolean): Combination? {
+    private fun startSubRound(dice: List<Die>, scoreCard: ScoreCard, finalSubRound: Boolean): Combination? {
         val board = Board(dice)
-        val combinationsNotFilled = scoreSheet.nonFilledRows()
+        val combinationsNotFilled = scoreCard.nonFilledRows()
         val combinationsOnBoard = board.combinations()
         val possibleCombinations = combinationsNotFilled.map { combinationType ->
             combinationsOnBoard.firstOrNull { it::class == combinationType } ?: Blank.blank(combinationType)

@@ -1,8 +1,6 @@
 package yahtzee.combination
 
 import yahtzee.Die
-import yahtzee.score.BlankEntry
-import yahtzee.score.ScoreSheetEntry
 
 
 abstract class Combination {
