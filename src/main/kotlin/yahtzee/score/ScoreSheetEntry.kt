@@ -7,6 +7,7 @@ open class ScoreSheetEntry(
     private val score: Int
 ) {
     override fun toString() = "$combination: $score points"
+    operator fun plus(other: Int) = score + other
 
-    infix fun addTo(scoreSheet: ScoreSheet) { scoreSheet.addScoreToSheet(combination, this) }
+    infix fun addTo(scoreSheet: ScoreSheet) = scoreSheet.addScoreToSheet(combination, this)
 }
