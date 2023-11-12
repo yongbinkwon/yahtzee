@@ -18,21 +18,12 @@ class ScoreCard(
     fun filledOut() = scores.keys == Combination.ALL_COMBINATIONS
     fun totalScore() = scores.values.fold(0) { acc, entry -> entry + acc }
 
+    fun result() = YahtzeeResult(playerName, scores.values.toList(), totalScore())
+
+    override fun toString() = playerName
     override fun equals(other: Any?) = this === other || (other is ScoreCard && this.equals(other))
     private fun equals(other: ScoreCard) = playerName == other.playerName && scores == other.scores
     override fun hashCode() = (31 * playerName.hashCode()) + scores.hashCode()
-
-    /*
-    fun results() = Result(playerName, card.values.filterNotNull().toList(), totalScore())
-    infix fun versus(other: ScoreCard) {
-        when(totalScore().compareTo(other.totalScore())) {
-            -1 -> println("${other.playerName} wins")
-            0 -> println("draw")
-            1 -> println("$playerName wins")
-        }
-    }
-
-     */
 }
 
 private typealias CombinationScores = Map<out Combination, ScoreCardEntry>
