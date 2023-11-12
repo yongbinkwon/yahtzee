@@ -20,7 +20,7 @@ class Board(
         val combinations = combinationsPerDie(die, frequency)
         if (combinations.any(acc::contains)) throw RuntimeException("duplicate combinations")
         acc.apply { addAll(combinations) }
-    } + Chance
+    }
 
     private fun combinationsPerDie(die: Die, frequency: Int) = listOf(1, 3, 4)
         .filter { it <= frequency }
