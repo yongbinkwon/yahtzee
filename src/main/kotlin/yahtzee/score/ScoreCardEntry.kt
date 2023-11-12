@@ -8,6 +8,4 @@ open class ScoreCardEntry(
 ) {
     override fun toString() = "$combination: $score points"
     operator fun plus(other: Int) = score + other
-
-    infix fun addTo(scoreCard: ScoreCard) = scoreCard.addScoreToCard(combination, this)
 }

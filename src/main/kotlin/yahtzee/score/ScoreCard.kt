@@ -3,18 +3,18 @@ package yahtzee.score
 import yahtzee.combination.*
 
 class ScoreCard(
-    private val playerName: String,
-    private val scores: CombinationScores = mapOf()
+    private val scores: CombinationScores = mapOf(),
+    private val playerName: String = ""
 ) {
     fun addScoreToCard(combination: Combination, entry: ScoreCardEntry) =
         scores[combination]?.run {
             throw IllegalStateException("combination $combination is already in score card")
-        } ?: ScoreCard(playerName, scoreCardRow(combination, entry) addTo scores)
+        } ?: ScoreCard(scoreCardRow(combination, entry) addTo scores, playerName)
 
     private infix fun ScoreCardRow.addTo(scores: CombinationScores) = scores + this
     private fun scoreCardRow(combination: Combination, entry: ScoreCardEntry) = combination to entry
 
-    fun nonFilledRows() = scores.entries.filter { it.key !in Combination.ALL_COMBINATIONS }.map { it.key }
+    fun nonFilledRows() = Combination.ALL_COMBINATIONS.filter { it !in scores.keys }.toSet()
     fun filledOut() = scores.keys == Combination.ALL_COMBINATIONS
     fun totalScore() = scores.values.fold(0) { acc, entry -> entry + acc }
 
@@ -31,10 +31,9 @@ class ScoreCard(
             1 -> println("$playerName wins")
         }
     }
-    private fun totalScore() = card.values.sumOf { it?.score() ?: 0 }
 
      */
 }
 
-private typealias CombinationScores = Map<Combination, ScoreCardEntry>
+private typealias CombinationScores = Map<out Combination, ScoreCardEntry>
 private typealias ScoreCardRow = Pair<Combination, ScoreCardEntry>
