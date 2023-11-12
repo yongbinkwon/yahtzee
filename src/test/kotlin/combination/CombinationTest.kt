@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Nested
 import yahtzee.Die
 import yahtzee.combination.*
 import kotlin.random.Random
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class CombinationTest {
     @Nested
