@@ -1,9 +1,8 @@
-package yahtzee.combination.single
+package yahtzee.combination
 
 import yahtzee.Die
-import yahtzee.combination.Combination
 
-abstract class Single(
+sealed class Single(
     private val countedDie: Die
 ): Combination() {
     companion object {
@@ -17,4 +16,6 @@ abstract class Single(
     }
     override fun score(dice: List<Die>) = countedDie*dice.frequencyOfDie(countedDie)
     private fun List<Die>.frequencyOfDie(die: Die) = count { it==die }
+
+    object Oness: Single(Die.one())
 }

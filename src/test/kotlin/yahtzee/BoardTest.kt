@@ -2,7 +2,6 @@ package yahtzee
 
 import org.junit.jupiter.api.Test
 import yahtzee.combination.*
-import yahtzee.combination.single.*
 import kotlin.test.assertEquals
 
 class BoardTest {

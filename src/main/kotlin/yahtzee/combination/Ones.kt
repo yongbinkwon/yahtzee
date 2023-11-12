@@ -1,4 +1,4 @@
-package yahtzee.combination.single
+package yahtzee.combination
 
 import yahtzee.Die
 

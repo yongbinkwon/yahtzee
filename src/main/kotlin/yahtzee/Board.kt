@@ -1,7 +1,7 @@
 package yahtzee
 
 import yahtzee.combination.*
-import yahtzee.combination.single.Single
+import yahtzee.combination.Single
 
 class Board(
     private val dice: List<Die>
