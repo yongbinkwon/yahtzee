@@ -1,4 +1,4 @@
-package score
+package yahtzee.score
 
 import yahtzee.Die
 import yahtzee.combination.*

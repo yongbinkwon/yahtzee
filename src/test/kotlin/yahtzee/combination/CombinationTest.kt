@@ -1,4 +1,4 @@
-package combination
+package yahtzee.combination
 
 import org.junit.jupiter.api.Nested
 import yahtzee.Die
