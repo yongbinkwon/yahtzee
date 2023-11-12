@@ -1,9 +1,9 @@
 package yahtzee.score
 
 data class YahtzeeResult(
-    val player: String,
-    val scoreCard: List<ScoreCardEntry>,
-    val totalScore: Int
+    private val player: String,
+    private val scoreCard: List<ScoreCardEntry>,
+    private val totalScore: Int
 ) {
     override fun toString() = "score card for $player\n${scoreCardStringRepresentation()}\ntotal score: $totalScore"
     private fun scoreCardStringRepresentation() = scoreCard.joinToString("\n")

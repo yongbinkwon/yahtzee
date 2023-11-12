@@ -5,6 +5,7 @@ import yahtzee.combination.*
 import yahtzee.score.BlankEntry
 import yahtzee.score.ScoreCard
 import yahtzee.score.ScoreCardEntry
+import yahtzee.score.YahtzeeResult
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -57,14 +58,15 @@ class ScoreCardTest {
     }
 
     @Test
-    fun `totalScore() returns total score of all filled entries`() {
+    fun `result() returns results of all filled entries`() {
         val score = 3
         val combination1 = Ones
         val entry1 = ScoreCardEntry(combination1, score)
         val combination2 = Fours
         val entry2 = ScoreCardEntry(combination2, score)
         val expectedScores = mapOf(combination1 to entry1, combination2 to entry2)
-        assertEquals(ScoreCard(expectedScores).totalScore(), score*2)
+        val actualResults = YahtzeeResult("", listOf(entry1, entry2), score*2)
+        assertEquals(ScoreCard(expectedScores).result(), actualResults)
     }
 
     @Test
