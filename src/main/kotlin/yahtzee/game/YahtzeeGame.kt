@@ -1,11 +1,6 @@
 package yahtzee.game
 
-import yahtzee.Board
-import yahtzee.Die
-import yahtzee.combination.Combination
-import yahtzee.score.BlankEntry
 import yahtzee.score.ScoreCard
-import yahtzee.score.ScoreCardEntry
 
 class YahtzeeGame {
     fun startGame(player1: String, player2: String) {

@@ -16,7 +16,7 @@ class ScoreCard(
 
     fun nonFilledRows() = Combination.ALL_COMBINATIONS.filter { it !in scores.keys }.toSet()
     fun filledOut() = scores.keys == Combination.ALL_COMBINATIONS
-    fun totalScore() = scores.values.fold(0) { acc, entry -> entry + acc }
+    private fun totalScore() = scores.values.fold(0) { acc, entry -> entry + acc }
 
     fun result() = YahtzeeResult(playerName, scores.values.toList(), totalScore())
 

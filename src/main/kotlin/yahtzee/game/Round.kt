@@ -14,7 +14,9 @@ class Round(
     fun startRound(seed: Random = Random.Default): ScoreCardEntry {
         var dice = List(4) { Die(seed) }
         repeat(3) { numberOfRerolls ->
-            if (numberOfRerolls != 0) { dice = reroll(dice) }
+            if (numberOfRerolls != 0) {
+                dice = reroll(dice)
+            }
             println(rollMessage(dice))
             startSubRound(dice, numberOfRerolls == 2)?.let { return it }
         }
@@ -40,12 +42,11 @@ class Round(
         combinationsNotFilled: Set<Combination>,
         combinationsOnBoard: Set<Combination>,
         dice: List<Die>
-    ) =
-        combinationsNotFilled.map { notFilledCombination ->
-            combinationsOnBoard.firstOrNull { it == notFilledCombination }?.let {
-                ScoreCardEntry(it, it.score(dice))
-            } ?: BlankEntry(notFilledCombination)
-        }
+    ) = combinationsNotFilled.map { notFilledCombination ->
+        combinationsOnBoard.firstOrNull { it == notFilledCombination }?.let {
+            ScoreCardEntry(it, it.score(dice))
+        } ?: BlankEntry(notFilledCombination)
+    }
 
     private fun List<ScoreCardEntry>.printEntries() {
         println("these are your selectable entries")

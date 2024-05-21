@@ -3,7 +3,7 @@ package yahtzee
 import yahtzee.combination.*
 
 class Board(
-    private val dice: List<Die>
+    dice: List<Die>
 ) {
     init {
         require(dice.size == 4) { "Exactly 4 dice on the board please" }

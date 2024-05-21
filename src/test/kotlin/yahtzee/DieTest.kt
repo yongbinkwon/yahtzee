@@ -38,11 +38,11 @@ class DieTest {
         val actualSeed = Random(123)
 
         val expectedDice = List(10) { expectedSeed.nextInt(1, 5) }.map(::Die)
-        val acutalDie = Die(actualSeed)
+        val actualDie = Die(actualSeed)
 
-        assertEquals(expectedDice[0], acutalDie)
+        assertEquals(expectedDice[0], actualDie)
         expectedDice.drop(1).forEach {
-            assertEquals(it, acutalDie.roll())
+            assertEquals(it, actualDie.roll())
         }
     }
 

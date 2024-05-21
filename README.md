@@ -1,4 +1,5 @@
 # Yahtzee
+This is an implementation of yahtzee with 4 dice. Pairs are not valid, and yahtzee gives 36 points
 
 To play yahtzee with default names for players:
 * run shell script with "./play_yahtzee.sh"

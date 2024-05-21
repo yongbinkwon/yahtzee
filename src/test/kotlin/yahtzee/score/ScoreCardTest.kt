@@ -1,11 +1,11 @@
 package yahtzee.score
 
 import yahtzee.Die
-import yahtzee.combination.*
-import yahtzee.score.BlankEntry
-import yahtzee.score.ScoreCard
-import yahtzee.score.ScoreCardEntry
-import yahtzee.score.YahtzeeResult
+import yahtzee.combination.Chance
+import yahtzee.combination.Combination
+import yahtzee.combination.Fours
+import yahtzee.combination.Ones
+import yahtzee.combination.ThreeOfAKind
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
